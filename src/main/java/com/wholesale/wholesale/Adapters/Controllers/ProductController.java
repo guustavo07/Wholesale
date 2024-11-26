@@ -1,7 +1,7 @@
 package com.wholesale.wholesale.Adapters.Controllers;
 
 import com.wholesale.wholesale.Domain.Entities.Product;
-import com.wholesale.wholesale.Domain.UseCases.ProductService;
+import com.wholesale.wholesale.Application.UseCases.Product.ProductService;
 import org.springframework.web.bind.annotation.*;
 
 import java.util.List;

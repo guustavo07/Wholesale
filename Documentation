@@ -1,0 +1,98 @@
+1. Cliente (Customer)
+    Representa os clientes da sua API, que geralmente são empresas ou revendedores.
+
+    Propriedades:
+
+    id (UUID ou Long) - Identificador único.
+    name (String) - Nome da empresa.
+    contactPerson (String) - Nome do responsável pelo contato.
+    email (String) - E-mail para contato.
+    phone (String) - Telefone para contato.
+    address (String) - Endereço da empresa.
+    taxId (String) - CNPJ ou outro identificador fiscal.
+    creditLimit (BigDecimal) - Limite de crédito concedido ao cliente.
+    createdAt (LocalDateTime) - Data de criação do registro.
+2. Produto (Product)
+    Representa os produtos disponíveis para venda no atacado.
+
+    Propriedades:
+
+    id (UUID ou Long) - Identificador único.
+    name (String) - Nome do produto.
+    description (String) - Descrição detalhada.
+    sku (String) - Código SKU (Stock Keeping Unit).
+    price (BigDecimal) - Preço unitário.
+    unit (String) - Unidade de medida (ex.: "caixa", "kg").
+    minimumOrderQuantity (Integer) - Quantidade mínima para pedido.
+    stockQuantity (Integer) - Quantidade em estoque.
+    category (String) - Categoria ou segmento.
+    createdAt (LocalDateTime) - Data de criação do registro.
+3. Pedido (Order)
+    Registra as transações de vendas feitas para os clientes.
+
+    Propriedades:
+
+    id (UUID ou Long) - Identificador único.
+    customer (Customer) - Cliente que fez o pedido.
+    orderDate (LocalDateTime) - Data do pedido.
+    status (String) - Status do pedido (ex.: "PENDENTE", "APROVADO", "CANCELADO").
+    totalAmount (BigDecimal) - Valor total do pedido.
+    discount (BigDecimal) - Desconto aplicado (se houver).
+    paymentTerms (String) - Condições de pagamento (ex.: "30 dias", "à vista").
+    deliveryDate (LocalDateTime) - Data estimada para entrega.
+4. Item do Pedido (OrderItem)
+    Detalha os produtos dentro de um pedido.
+
+    Propriedades:
+
+    id (UUID ou Long) - Identificador único.
+    order (Order) - Pedido ao qual este item pertence.
+    product (Product) - Produto associado.
+    quantity (Integer) - Quantidade pedida.
+    unitPrice (BigDecimal) - Preço unitário no momento do pedido.
+    totalPrice (BigDecimal) - Preço total (quantity x unitPrice).
+5. Pagamento (Payment)
+    Gerencia os pagamentos feitos pelos clientes.
+
+    Propriedades:
+
+    id (UUID ou Long) - Identificador único.
+    order (Order) - Pedido associado.
+    paymentDate (LocalDateTime) - Data do pagamento.
+    amount (BigDecimal) - Valor pago.
+    paymentMethod (String) - Método de pagamento (ex.: "BOLETO", "PIX", "TRANSFERÊNCIA").
+    confirmationNumber (String) - Número de confirmação (fornecido pelo gateway de pagamento).
+6. Estoque (Stock)
+    Gerencia o estoque disponível para os produtos.
+
+    Propriedades:
+
+    id (UUID ou Long) - Identificador único.
+    product (Product) - Produto associado.
+    warehouseLocation (String) - Localização do produto no depósito.
+    currentQuantity (Integer) - Quantidade atual em estoque.
+    reservedQuantity (Integer) - Quantidade reservada para pedidos em aberto.
+    lastUpdated (LocalDateTime) - Última atualização.
+7. Desconto (Discount)
+    Permite configurar regras de desconto para produtos ou clientes específicos.
+
+    Propriedades:
+
+    id (UUID ou Long) - Identificador único.
+    product (Product) - Produto ao qual o desconto se aplica (opcional).
+    customer (Customer) - Cliente ao qual o desconto se aplica (opcional).
+    discountPercentage (BigDecimal) - Percentual de desconto.
+    startDate (LocalDate) - Data de início da validade.
+    endDate (LocalDate) - Data de término da validade.
+    minimumOrderValue (BigDecimal) - Valor mínimo do pedido para aplicar o desconto.
+8. Entrega (Delivery)
+    Gerencia as informações de entrega dos pedidos.
+
+    Propriedades:
+
+    id (UUID ou Long) - Identificador único.
+    order (Order) - Pedido associado.
+    shippingAddress (String) - Endereço de entrega.
+    deliveryStatus (String) - Status da entrega (ex.: "EM TRÂNSITO", "ENTREGUE").
+    expectedDeliveryDate (LocalDateTime) - Data estimada para entrega.
+    trackingNumber (String) - Número de rastreamento (se aplicável).

@@ -1,6 +1,6 @@
 package com.wholesale.wholesale.Configuration;
 
-import com.wholesale.wholesale.Domain.UseCases.ProductService;
+import com.wholesale.wholesale.Application.UseCases.Product.ProductService;
 import com.wholesale.wholesale.Infrastructure.repositories.ProductRepository;
 import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.Configuration;
